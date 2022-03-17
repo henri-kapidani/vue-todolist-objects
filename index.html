@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue-todolist</title>
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<div id="root">
+		<div class="add-todo">
+			<input @keydown.enter="addTodo" v-model.trim="newTodo.text" type="text" name="todo-name" id="todo-name" placeholder="Nuovo Todo" size="1">
+			<button @click="addTodo">Aggiungi</button>
+		</div>
+
+		<ul class="todo-list">
+			<li v-if="!todos.length">Non ci sono todos</li>
+			<li v-for="(todo, i) in todos" :key="todo.text" @click="toggleDone(todo)" class="todo-item">
+				<div class="todo-text" :class="{done: todo.done}">{{ todo.text }}</div>
+				<button @click="deleteTodo(i)" class="btn-delete">x</button>
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
